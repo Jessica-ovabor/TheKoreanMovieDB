@@ -1,6 +1,7 @@
 from fastapi import APIRouter,HTTPException, Query, Path
 from moviedb.models.models import NewMovie
 from moviedb.config.config import client,collection
+from moviedb.utils.validate import is_valid_korean_movie
 
 
 movie_router = APIRouter()
