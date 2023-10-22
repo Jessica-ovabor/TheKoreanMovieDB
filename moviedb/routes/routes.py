@@ -2,7 +2,32 @@ from fastapi import APIRouter,HTTPException, Query, Path
 from moviedb.models.models import NewMovie
 from moviedb.config.config import client,collection
 
+
 movie_router = APIRouter()
+
+
+
+
+
+
+
+                                                        
+ 
+# Step 1: Validate the title
+@movie_router.post("/wizard/step1")
+def step1(step1_input: NewMovie):
+    title = step1_input.title
+
+    if not is_valid_korean_movie(title):
+        raise HTTPException(
+            status_code=400,
+            detail="The provided title is not a valid Korean movie title."
+        )
+
+    # If the title is valid, you can proceed to Step 2
+    # You may want to store the title for later use
+    return {"message": "Valid Korean movie title. Proceed to Step 2."}
+
 
 @movie_router.get('/')
 async def hello_world():
